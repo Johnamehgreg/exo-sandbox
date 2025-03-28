@@ -33,7 +33,7 @@ export const serverFibonacci = axios.create({
 
 export const nextServerFibonacci = axios.create({
   // TODO change this
-  baseURL: 'http://localhost:3000/api/',
+  baseURL: 'https://dt5qrg-3000.csb.app/api/',
   responseType: 'json',
 });
 
