@@ -1,0 +1,17 @@
+<svg width="144" height="69" viewBox="0 0 144 69" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect opacity="0.05" x="6.85718" y="38.5" width="13.7143" height="34.2857" rx="0.857143" fill="#282828"/>
+<rect opacity="0.1" x="21.4287" y="21.7852" width="13.7143" height="51" rx="0.857143" fill="#282828"/>
+<rect opacity="0.05" x="40.8572" y="53.0703" width="13.7143" height="19.7143" rx="0.857143" fill="#282828"/>
+<rect opacity="0.5" x="55.4287" y="29.0703" width="13.7143" height="0.857143" rx="0.428571" fill="#282828" fill-opacity="0.95"/>
+<rect opacity="0.5" x="55.4287" y="30.7852" width="13.7143" height="42" rx="0.857143" fill="url(#paint0_linear_2027_5067)"/>
+<rect opacity="0.05" x="74.8572" y="38.5" width="13.7143" height="34.2857" rx="0.857143" fill="#282828"/>
+<rect opacity="0.05" x="89.4285" y="0.785156" width="13.7143" height="72" rx="0.857143" fill="#282828"/>
+<rect opacity="0.05" x="108.857" y="59.0703" width="13.7143" height="13.7143" rx="0.857143" fill="#282828"/>
+<rect opacity="0.1" x="123.429" y="64.2148" width="13.7143" height="8.57143" rx="0.857143" fill="#282828"/>
+<defs>
+<linearGradient id="paint0_linear_2027_5067" x1="62.2859" y1="30.7852" x2="62.2859" y2="72.7852" gradientUnits="userSpaceOnUse">
+<stop stop-color="#121212" stopOpacity="0.4"/>
+<stop offset="1" stop-color="#121212" stopOpacity="0"/>
+</linearGradient>
+</defs>
+</svg>

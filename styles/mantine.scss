@@ -1,0 +1,22 @@
+.button-root {
+  @apply rounded-[4px] text-[14px] font-[650] tracking-[-0.28px] text-palegreen;
+
+  &[data-variant='danger'] {
+    background-color: var(--mantine-primaryColor-6);
+    color: var(--mantine-color-red-0);
+  }
+
+  &[data-variant='default'] {
+    @apply rounded-[6px] border-[1px] border-solid border-gray-200 bg-white text-[14px] font-[400] text-gray-800;
+  }
+}
+
+.segmentedControl-custom-root {
+  &[data-variant='custom'] {
+    @apply bg-transparent p-0;
+
+    .indicator {
+      @apply bg-[var(--mantine-primary-color-6)];
+    }
+  }
+}

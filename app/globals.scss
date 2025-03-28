@@ -1,0 +1,15 @@
+@import '../styles/global.scss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-twk text-[var(--mantine-color-text-color-11)];
+  // font-family: "Helvetica Neue", sans-serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  @apply bg-white;
+}

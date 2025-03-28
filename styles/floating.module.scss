@@ -1,0 +1,30 @@
+.root {
+  position: relative;
+  width: '100%';
+}
+
+.control {
+  padding: 7px 12px;
+  line-height: 1;
+  width: 100%;
+  transition: color 100ms ease;
+  font-weight: 500;
+
+  @mixin hover {
+    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  }
+
+  // &[data-active] {
+  //   color: var(--mantine-color-white);
+  // }
+}
+
+.controlLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.indicator {
+  background-color: var(--mantine-primary-color-filled);
+  border-radius: var(--mantine-radius-md);
+}

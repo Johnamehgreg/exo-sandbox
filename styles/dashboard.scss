@@ -1,0 +1,299 @@
+.dashboard-border {
+  @apply border-[1px] border-solid border-[var(--mantine-color-border-color-1)];
+}
+
+.dashboard-header-card-wrapper-border {
+  @extend .dashboard-border;
+  @apply mb-1 mr-1 rounded-[10px] !border-gray-300 bg-white shadow-sm;
+}
+
+.dashboard-border-1 {
+  @apply border-[1px] border-solid border-[var(--mantine-color-border-color-2)];
+}
+
+.dashboard-text-header {
+  @apply text-[1rem] font-semibold;
+  font-family: Instrument Sans;
+}
+
+.dashboaard-text-title {
+  @apply text-[14px] font-normal text-[#000];
+}
+
+.dashboard-vertical-padding {
+  @apply py-0;
+}
+
+.dashboard-horizontal-padding {
+  @apply px-3;
+}
+
+.dashboard-stacked-v-header-text {
+  @apply mb-2 text-[14px] text-[#000];
+}
+
+.link {
+  @apply block h-[44px] rounded-md text-[#62738D] transition-all;
+
+  padding: 0 var(--mantine-spacing-md);
+
+  &:hover {
+    @apply transition-all;
+    background-color: #eff3f9;
+    color: var(--mantine-color-exo-brand-6);
+  }
+
+  &[data-active] {
+    &,
+    &:hover {
+      @apply transition-all;
+      border-left-color: var(--mantine-color-blue-filled);
+      background-color: #eff3f9;
+      color: var(--mantine-color-exo-brand-6);
+    }
+  }
+}
+
+.black-list-table-item {
+  @apply text-[14px] font-normal leading-6 text-gray-800;
+}
+
+.black-list-table-header {
+  @apply text-[12px] font-medium;
+}
+
+.text-color {
+  @apply text-[#020617];
+}
+
+.text-color-gray {
+  @apply text-[#475569];
+}
+
+.side-nav-text {
+  @apply font-twk text-[14px] font-[350] text-gray-600 delay-[3s];
+}
+
+.text-on-boarding {
+  @extend .text-color;
+  @apply mb-[36px] text-[16px] font-normal leading-[27.2px];
+}
+
+.dashboard-container-wrapper {
+  @apply px-[14px] pt-[1rem] md:px-[34px];
+}
+
+.diana-onboarding-text-title {
+  background: linear-gradient(
+    271.95deg,
+    #070707 -7.57%,
+    #77ff9e 65%,
+    #000000 85%
+  );
+  font-family: Helvetica Neue;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: left;
+
+  @apply text-lg md:text-[40px] md:leading-[48px];
+}
+
+.helvetica {
+  font-family: Helvetica Neue;
+}
+
+.diana-onboarding-conversation {
+  background: linear-gradient(
+    241.5deg,
+    rgba(223, 215, 255, 0.4) -15.19%,
+    #ffffff 118.06%
+  );
+}
+
+.exo-conversation {
+  @apply border-[3px];
+  border-radius: 36px;
+  @extend .dashboard-border;
+  background: rgba(255, 255, 255, 0.31);
+  backdrop-filter: blur(20px);
+}
+
+.diana-onboarding-task-card {
+  background: radial-gradient(
+    45.86% 68.66% at 95.79% 106.23%,
+    #ffffff 6.31%,
+    #f7f6ff 55.04%,
+    #ffffff 100%
+  );
+}
+
+.diana-onboarding-text {
+  background: linear-gradient(
+    271.95deg,
+    #070707 -7.57%,
+    #77ff9e 55%,
+    #000000 75%
+  );
+  font-family: Helvetica Neue;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: left;
+
+  @apply break-words text-lg md:text-[36px] md:leading-[48px];
+}
+
+.ai-text {
+  background: linear-gradient(
+    271.95deg,
+    #070707 -7.57%,
+    #0cae5c,
+    55%,
+    #000000 75%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.diana-onboarding-chat-ai-text {
+  font-family: Helvetica Neue;
+  background: linear-gradient(
+    271.95deg,
+    #070707 -7.57%,
+    #77ff9e 55%,
+    #000000 75%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: left;
+
+  @apply break-words text-xl md:text-[25px] md:leading-[140%];
+}
+
+.exo-chat-ai-text {
+  font-family: Helvetica Neue;
+  background: linear-gradient(
+    271.95deg,
+    #070707 -7.57%,
+    #77ff9e 55%,
+    #000000 75%
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  text-align: left;
+
+  @apply break-words md:text-[25px] md:leading-[120%];
+}
+
+.diana-onboarding-chat-text {
+  font-family: Helvetica Neue;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-align: right;
+
+  @apply break-words text-lg md:text-[25px] md:leading-[120%];
+}
+
+.sidebar-shadow {
+  box-shadow:
+    0px 4px 12px 0px rgba(248, 250, 252, 0.1),
+    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+}
+
+.diana-onboarding-history-blur {
+  background: linear-gradient(
+    241.5deg,
+    rgba(223, 215, 255, 0.4) -15.19%,
+    #ffffff 118.06%
+  );
+}
+
+.scroll-layout {
+  @apply h-[100vh] overflow-y-scroll;
+}
+
+.describe-list-wrapper {
+  @apply z-30 h-full min-h-[120px] overflow-hidden transition-all duration-300 hover:scale-[1.04];
+  border-radius: 8px;
+  background: linear-gradient(155deg, #bbf7d0 -17.86%, #fff 102.13%);
+}
+
+.chat-input-wrapper {
+  @apply rounded-full border border-[#9CA3AF] bg-white px-[10px] py-[10px] transition-all;
+  box-shadow: 0px 9px 18.9px 0px rgba(0, 0, 0, 0.07);
+}
+
+.attachment-card {
+  @apply flex h-[54px] w-full items-center gap-2 overflow-hidden !rounded-[8px] border-[1px] border-solid border-[#E5E7EB] bg-white xs:max-w-[200px];
+}
+
+.selected-goal-card {
+  @apply z-10 flex w-full items-start !rounded-[8px] bg-[var(--mantine-color-exo-brand-6)] bg-white px-2 py-2 shadow-md;
+  @extend .dashboard-border;
+}
+
+.attachment-file-card {
+  @apply w-full xs:max-w-[200px];
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: var(--Grays-White, #fff);
+  display: inline-flex;
+  padding: 5px;
+  align-items: center;
+  gap: 12px;
+}
+
+.goad-item-card {
+  @apply w-auto;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  background: var(--Grays-White, #fff);
+  display: inline-flex;
+  // padding: 5px;
+  align-items: center;
+  gap: 16px;
+}
+
+.diana-stage-item {
+  @apply flex items-center gap-2 rounded-[8px] border-[1px] border-solid border-[#E2E8F0] bg-white px-[10px] py-[6px] text-[14px];
+
+  p {
+    @apply text-[14px] text-[#4B5563];
+  }
+}
+
+.diana-stage-item-selected {
+  @extend .diana-stage-item;
+  background: var(--mantine-color-exo-brand-6);
+
+  p {
+    @apply text-[14px] text-[var(--mantine-color-exo-brand-4)];
+  }
+}
+
+.inner-card-padding {
+  @apply rounded-xl bg-white p-[10px] sm:bg-white sm:p-[30px];
+}
+
+.dashboard-grid-header-text {
+  @apply text-[14px] font-normal text-[#475569];
+}
+
+.dashboard-grid-sub-text {
+  @apply text-[24px] font-medium text-[#020617];
+}

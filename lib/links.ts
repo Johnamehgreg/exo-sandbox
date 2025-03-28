@@ -1,0 +1,1 @@
+export const fibonacciDocs = "https://fibonacci-docs.exoai.tech/docs/intro"

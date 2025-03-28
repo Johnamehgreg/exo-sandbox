@@ -1,0 +1,31 @@
+@use 'global';
+@use 'dashboard';
+@use 'mantine';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-twk text-[var(--mantine-color-text-color-11)];
+  // font-family: "Helvetica Neue", sans-serif;
+  font-optical-sizing: auto;
+}
+
+body {
+  @apply bg-white;
+}
+
+// .demo {
+//   @mixin light {
+//     color: #000;
+//   }
+
+//   @mixin dark {
+//     color: blue;
+//   }
+// }
+
+.wrapper {
+  // @apply bg-pink-300;
+}
