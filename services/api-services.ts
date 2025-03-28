@@ -249,6 +249,7 @@ const apis = {
         batchId: string;
         projectId: string;
       }) => serverDianaApi.delete(`/batch/${batchId}/project/${projectId}`),
+      deleteBatch: (batchId: string) => serverDianaApi.delete(`/batch/${batchId}`),
     },
     chat: {
       getDianaChatHistory: (projectId: string, projectType: string) => {

@@ -19,6 +19,7 @@ import { ProjectDeleteModal } from '../modal/project-delete-modal';
 import { DianaSidenavItem } from '../nav/batch-sidenav-item';
 import { ProjectListComponent } from '../other/project-list-component';
 import { SideNavListLoader } from '../ui/sidenav-list-loader';
+import { BatchDeleteModal } from '../modal/batch-delete-modal';
 
 
 interface Props {
@@ -53,7 +54,7 @@ export const BatchNav: React.FC<Props> = ({ onSingleProjectClick, session }) => 
   const router = useRouter();
   const { batchId } = useParams()
 
-  const { batchAnalysisList, isLoading: isBatchLoading } =
+  const { batchAnalysisList, isLoading: isBatchLoading, refetch } =
     useGetBatchAnalysis();
   const pathname = usePathname(); // Use `usePathname` instead of `useRouter` in Next.js 13+
 
@@ -173,28 +174,39 @@ export const BatchNav: React.FC<Props> = ({ onSingleProjectClick, session }) => 
         >
           <>
             {isBatchLoading && <SideNavListLoader />}
-            {batchAnalysisList?.map(({ batch_name, batch_id }) => {
+            {batchAnalysisList?.map((item) => {
+              const { batch_name, batch_id } = item
               const isActive = batch_id === batchId;
               return (
-                <Link
+                <UnstyledButton
+                  className='w-full'
                   key={batch_id}
-                  href={routes.diana.batchDetail(batch_id)}
-                  className="batch-collapse-link-item relative w-full"
-                  data-is-active={isActive}
+                  onClick={() => {
+                    router.push(routes.diana.batchDetail(batch_id))
+                  }}
                 >
-                  <Transition
-                    mounted={isActive}
-                    transition="pop"
-                    duration={400}
-                    timingFunction="ease"
+                  <Box
+                    className="batch-collapse-link-item w-full relative w-full group/edit"
+                    data-is-active={isActive}
                   >
-                    {(styles) => (
-                      <Box style={styles} className="batch-link-indicator" />
-                    )}
-                  </Transition>
-                  <Folder size={18} />
-                  <Box>{batch_name}</Box>
-                </Link>
+                    <BatchDeleteModal onSuccess={()=> {
+                      refetch()
+                    }} batchDetail={item} />
+                    <Transition
+                      mounted={isActive}
+                      transition="pop"
+                      duration={400}
+                      timingFunction="ease"
+                    >
+                      {(styles) => (
+                        <Box style={styles} className="batch-link-indicator" />
+                      )}
+                    </Transition>
+                    <Folder size={18} />
+                    <Box>{batch_name}</Box>
+                  </Box>
+
+                </UnstyledButton>
               );
             })}
           </>
@@ -241,31 +253,34 @@ export const BatchNav: React.FC<Props> = ({ onSingleProjectClick, session }) => 
                   ({ label, url, projectId: project_id, completed }, index) => {
                     const isActive = projectId === project_id;
                     return (
-                      <Link
+                      <UnstyledButton
                         key={index}
                         onClick={() => {
                           onSingleProjectClick?.();
+                          router.push(url)
                         }}
-                        href={url}
-                        className="batch-collapse-link-item relative group/edit"
-                        data-is-active={isActive}
+                        className='w-full'
                       >
-                        <ProjectorScreen size={18} />
-                        <ProjectDeleteModal
-                          projectDetail={{
-                            project_name: label,
-                            project_id: projectId as string,
-                          }}
-                        />
-                        <Box>
-                          {label}
-                          {!completed && (
-                            <Text className="text-[12px] text-gray-400">
-                              Incomplete
-                            </Text>
-                          )}
+                        <Box
+                          className="batch-collapse-link-item w-full relative group/edit"
+                          data-is-active={isActive}>
+                          <ProjectorScreen size={18} />
+                          <ProjectDeleteModal
+                            projectDetail={{
+                              project_name: label,
+                              project_id: projectId as string,
+                            }}
+                          />
+                          <Box>
+                            {label}
+                            {!completed && (
+                              <Text className="text-[12px] text-gray-400">
+                                Incomplete
+                              </Text>
+                            )}
+                          </Box>
                         </Box>
-                      </Link>
+                      </UnstyledButton>
                     );
                   }
                 )}

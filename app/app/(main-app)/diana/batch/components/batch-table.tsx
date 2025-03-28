@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   useReactTable,
   ColumnDef,
@@ -6,10 +6,18 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { format } from "date-fns";
-import { Progress, Text } from "@mantine/core";
+import { Progress, Text, Menu, Anchor, Flex,  ActionIcon } from "@mantine/core";
 import { ClockCountdown } from "@phosphor-icons/react";
 import { BatchAnalysis } from "@/types/general";
 import { BatchStatusCard } from "./batch-status-card";
+import { ActionModal } from "@/components/modal/action-modal";
+import { IconFailedRed } from "@/public/assets/svg/icon-failed-red";
+import { IconArrowSlant } from "@/public/assets/svg/icon-arrow-slant";
+import { IconVerticalStack } from "@/public/assets/svg/icon-vertical-stack";
+import { upperFirst } from "@mantine/hooks";
+import { useBatch } from "@/hooks/mutate/use-batch";
+import { useRouter } from "nextjs-toploader/app";
+import { routes } from "@/lib/routes";
 
 // Define the types for the data
 
@@ -133,6 +141,17 @@ const columns: ColumnDef<BatchAnalysis>[] = [
       );
     },
   },
+  {
+    header: "Action",
+    accessorKey: "status",
+    cell: ({ row }) => {
+      return (
+        <ProjectActions
+          batchDetail={row.original}
+        />
+      );
+    },
+  },
 ];
 
 // Sample data
@@ -178,7 +197,7 @@ const BatchAnalysisTable: React.FC<Props> = ({ batchList }) => {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="text-sm cursor-pointer"
+              className="text-sm "
             >
               {row.getVisibleCells().map((cell) => (
                 <td
@@ -197,3 +216,85 @@ const BatchAnalysisTable: React.FC<Props> = ({ batchList }) => {
 };
 
 export default BatchAnalysisTable;
+
+
+
+interface BatchActionsProps {
+  batchDetail: BatchAnalysis;
+}
+
+const ProjectActions: React.FC<BatchActionsProps> = React.memo(({
+  batchDetail
+}) => {
+  const router = useRouter()
+  const [showBatchDelete, setShowBatchDelete] = useState(false);
+  const { onDeleteBatch, isLoading: isDeleting } = useBatch();
+
+  return (
+    <Flex>
+      <Menu withArrow>
+        <Menu.Target>
+          <ActionIcon
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            bg={"transparent"}
+          >
+            <IconVerticalStack fill="#98A2B3" />
+          </ActionIcon>
+        </Menu.Target>
+
+        <Menu.Dropdown>
+        <Menu.Item
+              leftSection={<IconArrowSlant />}
+              onClick={(e) => {
+                e.stopPropagation();
+                router.push(routes.diana.batchDetail(batchDetail.batch_id))
+              }}
+              component="a"
+              target="_blank"
+              className="text-[12px] font-normal min-w-[130px]"
+            >
+              Open Batch
+            </Menu.Item>
+
+
+          <Menu.Item
+            leftSection={<IconFailedRed />}
+            color="red"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowBatchDelete(true);
+            }}
+            className="text-[12px] font-normal min-w-[130px]"
+          >
+            Delete Batch
+          </Menu.Item>
+        </Menu.Dropdown>
+      </Menu>
+
+      <ActionModal
+        isProcessing={isDeleting}
+        buttonText={"Delete Batch"}
+        message={`Deleting this batch will result in the permanent \nloss of all associated data`}
+        title={`Are you sure you want to delete ${upperFirst(
+          batchDetail?.batch_name as string
+        )}`}
+        isVisible={showBatchDelete}
+        onSubmit={() => {
+          onDeleteBatch({
+            batch_id: batchDetail?.batch_id as string,
+            cb() {
+              setShowBatchDelete(false);
+            },
+          });
+        }}
+        onClose={() => {
+          setShowBatchDelete(false);
+        }}
+      />
+    </Flex>
+  );
+});
+
+ProjectActions.displayName = "ProjectActions";

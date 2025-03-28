@@ -20,7 +20,7 @@ export const toast = ({
       });
       break;
     case 'error':
-      _toast.error(message, {
+      _toast.error(message || 'Something went wrong', {
         style: {
           backgroundColor: '#db1515',
           color: '#fff',

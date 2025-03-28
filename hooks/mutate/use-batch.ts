@@ -5,10 +5,14 @@ import { useGetUserProfile } from "../query/user";
 import { toast } from "@/components/ui/toast";
 import { trackError } from "@/lib/error-tracking";
 import { BatchProjectModelTest, TeamMemberModel } from "@/types/general";
+import { useGetBatchAnalysis } from "../query/batch";
 
 export const useBatch = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { refetch } = useGetUserProfile();
+
+  const { refetch: refetchBatch } =
+    useGetBatchAnalysis();
   const onCreateBatch = ({
     values,
     cb,
@@ -113,10 +117,43 @@ export const useBatch = () => {
       })
       .finally(() => setIsLoading(false));
   };
+  const onDeleteBatch = ({
+    cb,
+    batch_id,
+    errorCb,
+  }: {
+    batch_id: string;
+    cb?: () => void;
+    errorCb?: (message: string) => void;
+  }) => {
+    setIsLoading(true);
+    apis.diana.batch
+      .deleteBatch(batch_id)
+      .then(() => {
+        setIsLoading(false);
+        cb?.();
+        refetchBatch()
+        toast({
+          message: 'Batch deleted successfully, ',
+          variant: 'success',
+        });
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        errorCb?.(e?.response?.data?.message);
+        toast({
+          message: e?.response?.data?.message,
+          variant: 'error',
+        });
+      })
+      .finally(() => setIsLoading(false));
+  };
   return {
     onCreateBatch,
     onUpdateBatch,
     onDeleteBatchProject,
     isLoading,
+    onDeleteBatch
+    
   };
 };
