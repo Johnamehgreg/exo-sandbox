@@ -358,6 +358,10 @@ export const fibonacciDownloadReportSchema = Yup.object().shape({
   startDate: Yup.string().required('Starting date is required'),
   endDate: Yup.string().required('Ending date is required'),
 });
+export const dianaDownloadReportSchema = Yup.object().shape({
+  documentType: Yup.string().required('Report format is required')
+});
+
 
 export const creditAnalysisSchema = Yup.object().shape({
   firstName: Yup.string()

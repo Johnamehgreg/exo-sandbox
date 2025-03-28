@@ -228,6 +228,8 @@ const apis = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       getProjectReport: (project_id: any) =>
         serverDiana.post(`/v2/diana/project/report?project_id=${project_id}`),
+      getGenerateWorkBook: (project_id: any) =>
+        serverDiana.post(`/v2/diana/project/workbook?project_id=${project_id}`),
     },
     batch: {
       getAllBatchAnalysis: (query?: string) =>

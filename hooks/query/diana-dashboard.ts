@@ -280,11 +280,13 @@ export const useDownloadReport = ({
   const [report, setReport] = useState<ReportModel | null>(null);
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && isFetched) {
       setReport(data.data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, data?.data?.data]);
+  }, [isSuccess, data, isFetched, isFetching]);
+
+
   return {
     report,
     isPending,
@@ -300,3 +302,54 @@ export const useDownloadReport = ({
     data,
   };
 };
+export const useGeneratWorkbook = ({
+  project_id,
+  enabled,
+}: {
+  project_id: string;
+  enabled?: boolean;
+}) => {
+  const {
+    isPending,
+    refetch,
+    isLoading,
+    error,
+    isSuccess,
+    isFetched,
+    isRefetching,
+    isError,
+    data,
+    status,
+    isFetching,
+  } = useQuery({
+    queryKey: ["get-overview-work-book", project_id],
+    queryFn: () => apis.diana.project.getGenerateWorkBook(project_id),
+    enabled: enabled,
+  });
+
+  const [report, setReport] = useState<ReportModel | null>(null);
+
+  useEffect(() => {
+    if (isSuccess && isFetched) {
+      setReport(data.data);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, data, isFetched, isFetching]);
+
+  
+  return {
+    report,
+    isPending,
+    refetch,
+    isError,
+    error,
+    isLoading,
+    isSuccess,
+    isRefetching,
+    isFetched,
+    isFetching,
+    status,
+    data,
+  };
+};
+
